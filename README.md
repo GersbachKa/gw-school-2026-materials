@@ -18,6 +18,7 @@ How to install the PTA software (and its dependencies) on a LINUX machine:
   4) `conda install -y -c conda-forge nb_conda jupyterlab`
   5) `pip install la-forge`
   6) `pip install tqdm`
+  7) `pip install git+https://github.com/GersbachKa/defiant`
 
 How to install the PTA software (and its dependencies) on a new MAC (M-series) machine:
 
@@ -30,6 +31,7 @@ How to install the PTA software (and its dependencies) on a new MAC (M-series) m
   6) `conda install -y -c conda-forge nb_conda jupyterlab`
   7) `pip install la-forge`
   8) `pip install tqdm`
+  9) `pip install git+https://github.com/GersbachKa/defiant`
 
 How to install the PTA software (and its dependencies) on a Windows machine:
   1) Use [WSL](https://learn.microsoft.com/en-us/windows/wsl/about) to install a LINUX instance on your Windows machine.
