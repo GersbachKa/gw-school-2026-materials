@@ -35,9 +35,7 @@ How to install the PTA software (and its dependencies) on a Windows machine:
   1) Use [WSL](https://learn.microsoft.com/en-us/windows/wsl/about) to install a LINUX instance on your Windows machine.
   2) Follow the instructions for LINUX. The software will not run on Windows natively!
 
-To install [`holodeck`](https://github.com/nanograv/holodeck), use one of these two methods:
-
-### Conda/mamba method:
+To install [`holodeck`](https://github.com/nanograv/holodeck):
 
   0) Install [Anaconda](https://docs.anaconda.com/anaconda/install/) (or, better yet, [mamba](https://mamba.readthedocs.io/en/latest/installation/mamba-installation.html)) and `git`.  Use either `conda` or `mamba` below, depending on which you have.
   1) Clone the repository and work in the dev branch
@@ -59,20 +57,3 @@ git config filter.nbstripout.extrakeys 'metadata.kernelspec metadata.language_in
 
   3) If you later edit a `.pyx` file, rerun `pip install -e . --no-deps` to rebuild the C extensions.
 
-
-### pixi method:
-
-  0) Install [`pixi`](https://pixi.prefix.dev/latest/#installation) and `git`.
-  1) Clone the repository and work in the pixified branch
-  
-```bash
-git clone https://github.com/nanograv/holodeck.git
-cd holodeck
-git switch dev-kg-pixidevenv
-```
-
-  2) Fire up a `pixi` shell in dev mode to install all needed dependencies:
-  
-```bash
-pixi shell -e dev
-```
