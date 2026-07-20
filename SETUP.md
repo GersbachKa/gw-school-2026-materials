@@ -131,6 +131,13 @@ all imports OK
 
 ---
 
+## Note on PyTorch
+
+`zuko` requires PyTorch. This environment is pinned to **CPU-only PyTorch** for
+everyone: on Linux/Windows it installs from PyTorch's CPU wheel index instead of
+the default multi-GB CUDA build; on macOS the standard wheel is already
+CPU/MPS-only. No GPU/CUDA setup is required.
+
 ## Troubleshooting
 
 | Symptom | Cause | Fix |

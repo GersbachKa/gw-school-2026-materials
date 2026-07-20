@@ -23,12 +23,29 @@ dependencies = [
     "numba>=0.60",
     "llvmlite>=0.43",
     "numpy",
+    "discovery",
+    "quickcw",
+    "zuko",
 ]
 
 [tool.uv.sources]
 defiant = { git = "https://github.com/GersbachKa/defiant" }
 holodeck-gw = { git = "https://github.com/nanograv/holodeck", branch = "dev" }
 jug-timing = { git = "https://github.com/MattTMiles/jug.git", branch = "test_dep" }
+discovery = { git = "https://github.com/nanograv/discovery" }
+quickcw = { git = "https://github.com/nanograv/quickcw" }
+# zuko is a published PyPI package (normalizing flows, needs PyTorch) — no git source needed.
+
+# Force CPU-only PyTorch. On Linux/Windows the default PyPI torch wheel bundles
+# multi-GB CUDA libraries; pulling from PyTorch's CPU index avoids that. macOS
+# wheels aren't published on the CPU index (and are already CPU/MPS-only on
+# PyPI), so Darwin keeps using the default index.
+torch = [{ index = "pytorch-cpu", marker = "platform_system != 'Darwin'" }]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
 
 # holodeck-gw builds with setuptools + Cython + numpy but does not declare them
 # as build dependencies. Inject them into uv's isolated build environment so the
@@ -37,6 +54,9 @@ jug-timing = { git = "https://github.com/MattTMiles/jug.git", branch = "test_dep
 # build with "ModuleNotFoundError: No module named 'setuptools'".)
 [tool.uv.extra-build-dependencies]
 holodeck-gw = ["setuptools", "wheel", "numpy"]
+# QuickCW ships a legacy setup.py with no declared build backend; ensure the
+# isolated build environment has setuptools/wheel available.
+quickcw = ["setuptools", "wheel"]
 
 [tool.hatch.build.targets.wheel]
 packages = []
