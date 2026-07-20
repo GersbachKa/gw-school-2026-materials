@@ -6,7 +6,10 @@ build-backend = "hatchling.build"
 name = "viper-env"
 version = "0.0.1"
 description = "Environment for the 2026 VIPER Summer School"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
+
+[tool.uv.extra-build-dependencies]
+holodeck-gw = ["setuptools", "wheel", "numpy"]
 
 dependencies = [
     "enterprise-pulsar",
@@ -17,17 +20,23 @@ dependencies = [
     "ipykernel",
     "notebook",
     "defiant",
+    "cython<3.0,>=0.29",
     "holodeck-gw",
     "jug-timing",
+    "numba>=0.60",
+    "llvmlite>=0.43",
+    "notebook"
 ]
 
 [tool.uv.sources]
 defiant = { git = "https://github.com/GersbachKa/defiant" }
-holodeck = { git = "https://github.com/nanograv/holodeck", branch = "dev" }
+holodeck-gw = { git = "https://github.com/nanograv/holodeck", branch = "dev" }
 jug-timing = { git = "https://github.com/MattTMiles/jug.git", branch = "test_dep" }
+
 
 [tool.hatch.build.targets.wheel]
 packages = []
 
 [tool.uv]
 package = false
+no-build-isolation-package = ["holodeck-gw"]
